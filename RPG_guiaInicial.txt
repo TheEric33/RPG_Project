@@ -1,0 +1,50 @@
+PROJECTE JOC RPG
+-------------------------------------------
+
+Classes: Tots els personatges(protagonistes, enemics, npc's) seran creats amb classes així com els escenaris o paÏsos on passa l'acció.
+Historia: Futbolistes (femenines) s'enfrontaran amb enemics estils gent masclista, membres de la federació o amb altres jugadores en partits.
+Estil: Hi haurà personatges predefinits que el jugador podrà triar i aquests tindran difrents habilitats, 
+en funció d'on vulgui anar l'usuari passaràn uns events o uns altres.
+Visual: Inicialment només serà text però podrà evolucionar per ser amb imatges.
+
+Classe jugadora:
+id
+Nom
+Cognom
+HP
+Atck
+Df
+pais(Anirà junt amb la classe pais)
+
+
+Classe Enemic:
+id
+Tipus
+Nom
+Cognom
+HP
+Atck
+Df
+pais
+
+Classe NPC:
+id
+Nom
+
+Classe pais:
+id
+Nom
+Ciutats
+
+Classe escenari:
+id
+Nom
+ciutat
+tipus
+
+Accions:
+En funció d'on es decideixi anar hi hauran difrents esdeveniments: Poden ser partits de futbol, baralles al carrer, problemes als despatxos etc.
+En els nivells de baralles, hi haura una serie d'atacs que restaran vida i a l'arribar un a 0 s'acaba, en canvi als nivells de partit seran 3 ocasions
+jugadora, contra una rival on es generaran numeros aleatoris entre 1 i 5 i al millor de 3 es guanya o perd el partit.
+
+

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baller Adventures</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+    <div id="initial">
+
+        <h1>Baller Adventures</h1>
+        <input type="submit" value="Start" onclick="triaJugadora()"/>
+
+    </div>
+    <div id="character" class="hidden">
+
+        <h1>Select Character</h1>
+        <p>Choose a character: </p>
+
+        <div class="player">
+
+            <p>Name: Ariadna Bonanit</p>
+            <p>Club: Barcla</p>
+            <input type="submit" value="choose" onclick="c_j1()"/>
+
+        </div>
+        <div class="player">
+
+            <p>Name: Kar Seem</p>
+            <p>Club: Chersy</p>
+            <input type="submit" value="choose" onclick="c_j2()"/>
+
+        </div>
+        <div class="player">
+
+            <p>Name: Renli Wemard</p>
+            <p>Club: Olympique Lions</p>
+            <input type="submit" value="choose" onclick="c_j3()"/>
+
+        </div>
+
+
+
+    </div>
+    
+    
+    <script>
+
+        class jugadora{
+
+            constructor(id,nom,cognom,club,hp,atck,df,pais){
+
+                this.id = id;
+                this.nom = nom;
+                this.cognom = cognom;
+                this.club = club;
+                this.hp = hp;
+                this.atck = atck;
+                this.df = df;
+                this.pais = pais;
+
+            }
+
+        }
+        
+        const j1 = new jugadora('j1','Ariadna','Bonanit','Barcla',100,60,40,'Spain');
+        const j2 = new jugadora('j2','Kar','Semm','Chersy',100,60,40,'England');
+        const j3 = new jugadora('j3','Renli','Wemard','Olympique Lions',100,60,40,'France');
+        var screen_1 = document.getElementById("initial");
+        var screen_2 = document.getElementById("character");
+
+        var pl = new jugadora();
+
+        console.log(j1);
+        console.log(pl);
+
+        function triaJugadora(){
+
+            screen_1.style.display = "none";
+            screen_2.style.display = "block";
+
+        }
+
+        function c_j1(){
+
+            pl = j1;
+            screen_2.innerHTML = "<p>Your player is "+ pl.nom +" " + pl.cognom + ", the player of "+ pl.club +" from the league of "+ pl.pais +".</p>";
+
+        }
+
+        function c_j2(){
+
+            pl = j2;
+            screen_2.innerHTML = "<p>Your player is "+ pl.nom +" " + pl.cognom + ", the player of "+ pl.club +" from the league of "+ pl.pais +".</p>";
+
+
+        }
+
+        function c_j3(){
+
+            pl = j3;
+            screen_2.innerHTML = "<p>Your player is "+ pl.nom +" " + pl.cognom + ", the player of "+ pl.club +" from the league of "+ pl.pais +".</p>";
+
+
+        }
+
+    </script>
+
+</body>
+</html>

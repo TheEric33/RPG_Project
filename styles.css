@@ -1,0 +1,12 @@
+.hidden{
+
+    display: none;
+
+}
+.player{
+
+    display: inline-block;
+    margin: 2%;
+    text-align: center;
+
+}

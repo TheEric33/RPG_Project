@@ -35,7 +35,7 @@
         </div>
         <div class="player">
 
-            <p>Name: Renli Wemard</p>
+            <p>Name: Dolphin Carascino</p>
             <p>Club: Olympique Lions</p>
             <input type="submit" value="choose" onclick="c_j3()"/>
 
@@ -45,13 +45,29 @@
 
     </div>
 
-    <div id="starting" class="hidden">
+    <div id="starting" class="hidden"></div>
 
+    <div id="start_match1" class="hidden">
+        
+        <input type="submit" value="Start Match" onclick="match1()"/>
+    
+    </div>
+    
+    <div id="match1" class="hidden">
 
+        <div id="match1_comment"></div>
+        <div id="match1_shot" class="hidden">
+
+            <input type="submit" value="Shoot" onclick="shot()">
+
+        </div>
+        <div id="return_match1" class="hidden">
+
+            <input type="submit" value="Return to the match" onclick="match1()">
+
+        </div>
 
     </div>
-    <div id="start_match1" class="hidden"><input type="submit" value="Start Match" onclick="match1()"/></div>
-    
     
     <script>
 
@@ -99,7 +115,7 @@
         
         const j1 = new jugadora('j1','Ariadna','Bonanit','Barcla',100,60,40,'Spain');
         const j2 = new jugadora('j2','Kar','Semm','Chersy',100,60,40,'England');
-        const j3 = new jugadora('j3','Renli','Wemard','Olympique Lions',100,60,40,'France');
+        const j3 = new jugadora('j3','Dolphin','Carascino','Olympique Lions',100,60,40,'France');
         const p1 = new pais('j1','Spain',['Barcelona','Madrid','Valencia','Sevilla']);
         const p2 = new pais('p2','England',['London','Liverpool','Manchester','Birmingham']);
         const p3 = new pais('p3','France',['Lyon','Paris','Toulouse','Marsella']);
@@ -109,8 +125,14 @@
         var screen_1 = document.getElementById("initial");
         var screen_2 = document.getElementById("character");
         var screen_3 = document.getElementById("starting");
+        var screen_4 = document.getElementById("match1");
+        var screen_4c = document.getElementById("match1_comment");
+        var screen_4s = document.getElementById("match1_shot");
+        var screen_4r = document.getElementById("return_match1");
         var startGame = document.getElementById("start_button");
         var startMatch1 = document.getElementById("start_match1");
+        var chances = 0;
+
         
 
         var pl = new jugadora();
@@ -149,8 +171,6 @@
 
         function start_game(){
 
-            console.log(pl);
-
             screen_2.style.display = "none";
 
             if (pl.pais == 'Spain'){
@@ -175,6 +195,76 @@
             screen_3.innerHTML = "<p>Presenter: Welcome, we are today in the "+ st.nom +"! "+ pl.club +" is going to play soon.</br>Presenter: The players are ready to start the match!</br>Presenter: Everyone is ready and the referee indicates the start of the match!</br></br>Welcome player, this style of levels are about a football match.<br>Your player will have 3 goal chances, she will randomly score or not, if the character score at least 2 goals the team will win the match.<br>Now tap the start match button:</p>";
         
             startMatch1.style.display = "block";
+
+        }
+
+        function match1(){
+
+                screen_4.style.display = "block";
+
+                screen_3.style.display = "none";
+                startMatch1.style.display = "none";
+
+            if (chances == 0){  
+
+                screen_4c.innerHTML = "<p>Presenter: "+ pl.club + " is moving the ball <br> Presenter: "+ pl.nom + " "+ pl.cognom + " have recieved the ball, She is now inside the area! <br> Presenter: One one against the GoalKeeper! </p>";
+                screen_4s.style.display = "block";
+
+            }else if (chances == 1){
+
+                screen_4r.style.display = "none";
+                console.log("works");
+
+            }else {
+
+
+
+            }   
+
+        }
+
+        function shot(){
+
+            var sr = (Math.random()*5);
+            var kr = (Math.random()*5);
+            var shoot;
+            var plpoint = 0;
+            var rpoint = 0;
+
+            if (sr > kr){
+
+                shoot = 'g';
+
+            }else if (kr > sr){
+
+                shoot = 's';
+
+            }else{
+
+                shoot = 'p';
+
+            }
+            
+            if (shoot == "g"){
+
+                screen_4c.innerHTML = "<p>GOOOOOOOAL from "+ pl.nom +"</p>";
+                plpoint = plpoint +1;
+
+            }else if (shoot == "s"){
+
+                screen_4c.innerHTML = "<p>Saved by the keeper</p>";
+                rpoint = rpoint +1;
+
+            }else{
+
+                screen_4c.innerHTML = "<p> To the post!</p>";
+
+            }
+
+            console.log(plpoint,rpoint);
+            chances = chances +1;
+            screen_4s.style.display = "none";
+            screen_4r.style.display = "block";
 
         }
 

@@ -41,9 +41,16 @@
 
         </div>
 
+        <input type="submit" value="Start Game" onclick="start_game()" id="start_button" class="hidden">
+
+    </div>
+
+    <div id="starting" class="hidden">
+
 
 
     </div>
+    <div id="start_match1" class="hidden"><input type="submit" value="Start Match" onclick="match1()"/></div>
     
     
     <script>
@@ -63,18 +70,54 @@
 
             }
 
+
+        }
+
+        class pais{
+
+            constructor(id,nom,ciutats){
+
+                this.id = id;
+                this.nom = nom;
+                this.ciutats = ciutats;
+
+            }
+
+        }
+
+        class escenari{
+
+            constructor(id,nom,ciutat){
+
+                this.id = id;
+                this.nom = nom;
+                this.ciutat = ciutat;
+
+            }
+
         }
         
         const j1 = new jugadora('j1','Ariadna','Bonanit','Barcla',100,60,40,'Spain');
         const j2 = new jugadora('j2','Kar','Semm','Chersy',100,60,40,'England');
         const j3 = new jugadora('j3','Renli','Wemard','Olympique Lions',100,60,40,'France');
+        const p1 = new pais('j1','Spain',['Barcelona','Madrid','Valencia','Sevilla']);
+        const p2 = new pais('p2','England',['London','Liverpool','Manchester','Birmingham']);
+        const p3 = new pais('p3','France',['Lyon','Paris','Toulouse','Marsella']);
+        const e1 = new escenari('e1','Estadi Joran Truth', 'Barcelona');
+        const e2 = new escenari('e2','Queensmiddle stadium','London');
+        const e3 = new escenari('e3','Lions center training','Lyon');
         var screen_1 = document.getElementById("initial");
         var screen_2 = document.getElementById("character");
+        var screen_3 = document.getElementById("starting");
+        var startGame = document.getElementById("start_button");
+        var startMatch1 = document.getElementById("start_match1");
+        
 
         var pl = new jugadora();
+        var cn = new pais();
+        var st = new escenari();
 
-        console.log(j1);
-        console.log(pl);
+
 
         function triaJugadora(){
 
@@ -86,23 +129,52 @@
         function c_j1(){
 
             pl = j1;
-            screen_2.innerHTML = "<p>Your player is "+ pl.nom +" " + pl.cognom + ", the player of "+ pl.club +" from the league of "+ pl.pais +".</p>";
+            startGame.style.display = "block";
 
         }
 
         function c_j2(){
 
             pl = j2;
-            screen_2.innerHTML = "<p>Your player is "+ pl.nom +" " + pl.cognom + ", the player of "+ pl.club +" from the league of "+ pl.pais +".</p>";
-
+            startGame.style.display = "block";
 
         }
 
         function c_j3(){
 
             pl = j3;
-            screen_2.innerHTML = "<p>Your player is "+ pl.nom +" " + pl.cognom + ", the player of "+ pl.club +" from the league of "+ pl.pais +".</p>";
+            startGame.style.display = "block";
 
+        }
+
+        function start_game(){
+
+            console.log(pl);
+
+            screen_2.style.display = "none";
+
+            if (pl.pais == 'Spain'){
+
+                cn = p1;
+                st = e1;
+
+            }else if (pl.pais == 'England'){
+
+                cn = p2;
+                st = e2;
+
+            }else if (pl.pais == 'France'){
+
+                cn = p3;
+                st = e3;
+
+            }
+
+            screen_3.style.display = "inline";
+
+            screen_3.innerHTML = "<p>Presenter: Welcome, we are today in the "+ st.nom +"! "+ pl.club +" is going to play soon.</br>Presenter: The players are ready to start the match!</br>Presenter: Everyone is ready and the referee indicates the start of the match!</br></br>Welcome player, this style of levels are about a football match.<br>Your player will have 3 goal chances, she will randomly score or not, if the character score at least 2 goals the team will win the match.<br>Now tap the start match button:</p>";
+        
+            startMatch1.style.display = "block";
 
         }
 

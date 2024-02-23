@@ -86,6 +86,23 @@
 
             }
 
+            atack(hp,atck,df){
+
+                var kick = atck - df;
+                hp = hp - kick;
+
+                return hp;
+
+            }
+
+            super_atack(hp,atck,df){
+
+                var kick = (atack * 2) - df;
+                hp = hp - kick;
+
+                return hp;
+
+            }
 
         }
 
@@ -112,6 +129,43 @@
             }
 
         }
+
+        class enemic{
+
+            constructor(id,tipus,nom,cognom,hp,atck,df,pais){
+
+                this.id = id;
+                this.tipus = tipus;
+                this.nom = nom;
+                this.cognom = cognom;
+                this.hp = hp;
+                this.atck = atck;
+                this.df = df;
+                this.pais = pais;
+
+            }
+
+            atack(hp,atck,df){
+
+                var kick = atck - df;
+                hp = hp - kick;
+
+                return hp;
+
+            }
+
+            super_atack(hp,atck,df){
+
+                var kick = (atack * 2) - df;
+                hp = hp - kick;
+
+                return hp;
+
+            }
+
+        }
+
+
         
         const j1 = new jugadora('j1','Ariadna','Bonanit','Barcla',100,60,40,'Spain');
         const j2 = new jugadora('j2','Kar','Semm','Chersy',100,60,40,'England');
@@ -119,9 +173,18 @@
         const p1 = new pais('j1','Spain',['Barcelona','Madrid','Valencia','Sevilla']);
         const p2 = new pais('p2','England',['London','Liverpool','Manchester','Birmingham']);
         const p3 = new pais('p3','France',['Lyon','Paris','Toulouse','Marsella']);
-        const e1 = new escenari('e1','Estadi Joran Truth', 'Barcelona');
-        const e2 = new escenari('e2','Queensmiddle stadium','London');
-        const e3 = new escenari('e3','Lions center training','Lyon');
+        const e1 = new escenari('e1','Estadi Joran Truth', p1.ciutats[0]);
+        const e2 = new escenari('e2','Queensmiddle stadium',p2.ciutats[0]);
+        const e3 = new escenari('e3','Lions center training',p3.ciutats[0]);
+        const e4 = new escenari('e4','Right street',p1.ciutats[2]);
+        const e5 = new escenari('e5','Right street',p2.ciutats[2]);
+        const e6 = new escenari('e6','Right street',p3.ciutats[2]);
+        const en1 = new enemic('en1','denialist','Paco','Gimenez',100,45,40,'Spain');
+        const en2 = new enemic('en2','denialist','George','Rice',100,45,40,'England');
+        const en3 =  new enemic('en3','denialist','Étienne','Bernard',100,45,40,'France');
+        const en4 = new enemic('en4','denialist','Rogelio','Martín',100,45,40,'Spain');
+        const en5 = new enemic('en5','denialist','Charles','Brown',100,45,40,'England');
+        const en6 = new enemic('en6','denialist','Renaud','Lambert',100,45,40,'France');
         var screen_1 = document.getElementById("initial");
         var screen_2 = document.getElementById("character");
         var screen_3 = document.getElementById("starting");
@@ -132,8 +195,10 @@
         var startGame = document.getElementById("start_button");
         var startMatch1 = document.getElementById("start_match1");
         var chances = 0;
-
+        var plpoint = 0;
+        var rpoint = 0;
         
+        console.log(e1);
 
         var pl = new jugadora();
         var cn = new pais();
@@ -213,11 +278,32 @@
             }else if (chances == 1){
 
                 screen_4r.style.display = "none";
-                console.log("works");
+                screen_4c.innerHTML = "<p>Presenter: " + pl.club + " have recovered the ball <br> Presenter: They have past de mid field and are approaching to the goal line! <br> Presenter: Back Pass to " + pl.nom + " " + pl.cognom + " Shooots! </p>";
+                screen_4s.style.display = "block";
 
-            }else {
+            }else if (chances == 2) {
 
+                screen_4r.style.display = "none";
+                screen_4c.innerHTML = "<p>Presenter: Long ball by " + pl.club + " " + pl.cognom + " has received the ball and she is alone!<br> Presenter: " + pl.nom + " is approching to the goal area. She is inside! <br> Presenter: " + pl.nom + " " + pl.cognom + " shoooooots! </p>";
+                screen_4s.style.display = "block";
 
+            }else{
+
+                screen_4r.style.display = "none";
+                
+                if (plpoint > rpoint){
+
+                    screen_4c.innerHTML = "<p>Presenter: And the referee indicates the end of this beautiful match. " + pl.club + " have won it!";
+
+                }else if (plpoint < rpoint){
+
+                    screen_4c.innerHTML = "<p>Presenter: And the referee indicates the end of this beautiful match. " + pl.club + " have lost!";
+
+                }else{
+
+                    screen_4c.innerHTML = "<p>Presenter: And the referee indicates the end of this beautiful match. it's a draw";
+
+                }
 
             }   
 
@@ -228,8 +314,7 @@
             var sr = (Math.random()*5);
             var kr = (Math.random()*5);
             var shoot;
-            var plpoint = 0;
-            var rpoint = 0;
+            
 
             if (sr > kr){
 

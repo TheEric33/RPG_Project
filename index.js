@@ -13,7 +13,7 @@ class jugadora{
 
     }
 
-    atack(hp,atck,df){
+    attack(hp,atck,df){
 
         var kick = atck - df;
         hp = hp - kick;
@@ -22,9 +22,9 @@ class jugadora{
 
     }
 
-    super_atack(hp,atck,df){
+    super_attack(hp,atck,df){
 
-        var kick = (atack * 2) - df;
+        var kick = (atck * 2) - df;
         hp = hp - kick;
 
         return hp;
@@ -72,7 +72,7 @@ class enemic{
 
     }
 
-    atack(hp,atck,df){
+    attack(hp,atck,df){
 
         var kick = atck - df;
         hp = hp - kick;
@@ -81,9 +81,9 @@ class enemic{
 
     }
 
-    super_atack(hp,atck,df){
+    super_attack(hp,atck,df){
 
-        var kick = (atack * 2) - df;
+        var kick = (atck * 2) - df;
         hp = hp - kick;
 
         return hp;
@@ -103,9 +103,6 @@ const p3 = new pais('p3','France',['Lyon','Paris','Toulouse','Marsella']);
 const e1 = new escenari('e1','Estadi Joran Truth', p1.ciutats[0]);
 const e2 = new escenari('e2','Queensmiddle stadium',p2.ciutats[0]);
 const e3 = new escenari('e3','Lions center training',p3.ciutats[0]);
-const e4 = new escenari('e4','Right street',p1.ciutats[2]);
-const e5 = new escenari('e5','Right street',p2.ciutats[2]);
-const e6 = new escenari('e6','Right street',p3.ciutats[2]);
 var screen_1 = document.getElementById("initial");
 var screen_2 = document.getElementById("character");
 var screen_3 = document.getElementById("starting");
@@ -117,6 +114,13 @@ var screen_4e = document.getElementById("end_match1");
 var startGame = document.getElementById("start_button");
 var startMatch1 = document.getElementById("start_match1");
 var screen_5 = document.getElementById("right_street");
+var screen_5c = document.getElementById("fight1_comment");
+var screen_5b = document.getElementById("start_fight1b");
+var screen_5r = document.getElementById("return_battle1");
+var decider = document.getElementById("battle1-decider");
+var textdecider = document.getElementById("text-decider");
+var screen_5rt = document.getElementById("retry_fight1");
+
 var chances = 0;
 var plpoint = 0;
 var rpoint = 0;
@@ -125,7 +129,9 @@ var rpoint = 0;
 var pl = new jugadora();
 var cn = new pais();
 var st = new escenari();
-
+var enemy1 = new enemic();
+var enemy2 = new enemic();
+var street = new escenari();
 
 
 function triaJugadora(){
@@ -270,7 +276,6 @@ function shot(){
 
     }
 
-    console.log(plpoint,rpoint);
     chances = chances +1;
     screen_4s.style.display = "none";
     screen_4r.style.display = "block";
@@ -285,8 +290,10 @@ function fight1(){
     const en4 = new enemic('en4','denialist','Rogelio','Martín',100,45,40,'Spain');
     const en5 = new enemic('en5','denialist','Charles','Brown',100,45,40,'England');
     const en6 = new enemic('en6','denialist','Renaud','Lambert',100,45,40,'France');
-    var enemy1 = new enemic();
-    var enemy2 = new enemic();
+    const e4 = new escenari('e4','Right street',p1.ciutats[2]);
+    const e5 = new escenari('e5','Left street',p2.ciutats[2]);
+    const e6 = new escenari('e6','Front street',p3.ciutats[2]);
+    
 
     screen_4.style.display = "none";
     screen_5.style.display = "block";
@@ -295,20 +302,119 @@ function fight1(){
 
         enemy1 = en1;
         enemy2 = en4;
+        street = e4;
 
     }else if (pl.pais == 'England'){
 
         enemy1 = en2;
         enemy2 = en5;
+        street = e5;
 
-    }else{
+    }else if (pl.pais == 'France'){
 
         enemy1 = en3;
         enemy2 = en6;
+        street = e6;
 
     }
 
+    screen_5c.innerHTML = "<p>Some weeks later...<br> The " + pl.club + " players played a match in " + street.ciutat + ", but, in the "+ street.nom +" the bus was late and then...<br> Some strange men appeared in the street and started insulting the players. <br> " + enemy1.nom + ": You don't play football! <br> " + enemy2.nom + ": You must go to the kitchen!</p> <br><br> <p>This is a fight level, some enemies will attack you and you will fight against them to survive. <br> Will be a turn battle with all the enemies one by one. <br> Now, tap the start battle button:</p>";
+
+}
+
+function start_fight1(){
+
     
+    decider.style.display = "block";
+    screen_5b.style.display = "none";
+    screen_5r.style.display = "none";
+    screen_5rt.style.display = "none";
+
+
+    var spat;
+
+    if (pl.hp > 0 && enemy1.hp > 0){
+
+        spat = (Math.random()*3);
+        spat = parseInt(spat);
+
+        if (spat == 2){
+
+            screen_5c.innerHTML = "<p>"+ enemy1.tipus + " "+ enemy1.nom +" is approaching, what do you want to do?<br>1- Ball attack<br> 2- Bycicle kick attack <br></p>";
+
+        }else{
+
+            screen_5c.innerHTML = "<p>"+ enemy1.nom +" is approaching, what do you want to do?<br>1- Ball attack<br></p>";
+
+        }
+   
+
+    }else{
+
+        decider.style.display = "none";
+
+        if (enemy1.hp<=0){
+
+            pl.hp = 110;
+
+            screen_5c.innerHTML = "<p>" + enemy1.nom + " is KO the other men are approaching to the " + pl.club + " players, but the police have arrived and the  men are arrested. Finally the bus arrives and the team can return to " + cn.ciutats[0] +"<br><br>Congratulations your player upgraded her healt to: "+ pl.hp +"</p>";
+
+        }else{
+
+            screen_5c.innerHTML = "<p> GAME OVER. " + enemy1.nom + " have knocked " + pl.nom + "</p>";
+
+            screen_5rt.style.display = "block";
+
+        }
+
+    }
+
+}
+
+function battle1_attack(){
+
+    screen_5r.style.display = "block";
+
+    if (textdecider.value == 1){
+
+        enemy1.hp = pl.attack(enemy1.hp,pl.atck,enemy1.df);
+
+        screen_5r.style.display = "block";
+
+        pl.hp = enemy1.attack(pl.hp, enemy1.atck, pl.df);
+
+        decider.style.display = 'none';
+
+        screen_5c.innerHTML = "<p>"+ pl.nom + " have kicked a ball direct to " + enemy1.tipus + " " + enemy1.nom + " but he gave a buff to the player. <br>" + pl.nom + "`s health: " + pl.hp + "<br> "+ enemy1.nom +"`s health: " + enemy1.hp + "</p>";
+
+
+        
+    }else if (textdecider.value == 2){
+
+        enemy1.hp = pl.super_attack(enemy1.hp,pl.atck,enemy1.df);
+
+        screen_5r.style.display = "block";
+
+        pl.hp = enemy1.attack(pl.hp, enemy1.atck, pl.df);
+
+        decider.style.display = 'none';
+
+        screen_5c.innerHTML = "<p>"+ pl.nom + " watched a ball flying and she hit it with a bycicle kick direct to " + enemy1.tipus + " " + enemy1.nom + " but he gave a buff to the player. <br>" + pl.nom + "`s health: " + pl.hp + "<br> "+ enemy1.nom +"`s health: " + enemy1.hp + "</p>";
+
+
+        
+
+    }else{
+
+        screen_5c.innerHTML = "<p> You entered the number wrong </p>";
+
+        screen_5r.style.display = "none";
+
+    }
+
+    textdecider.value = "";
 
 
 }
+
+pl.hp = 110;

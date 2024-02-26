@@ -74,7 +74,31 @@
 
     </div>
 
-    <div id="right_street" class="hidden"></div>
+    <div id="right_street" class="hidden">
+
+        <div id="fight1_comment"></div>
+        <div id="start_fight1b">
+
+            <input type="submit" value="Start Battle" onclick="start_fight1()">
+
+        </div>
+
+        <div id="battle1-decider" class="hidden">
+
+            <input type="number" id="text-decider"/>
+            <input type="submit"  value="Attack" onclick="battle1_attack()"/>
+
+        </div>
+
+        <div id="return_battle1" class="hidden">
+
+            <input type="submit" value="return to battle" onclick="start_fight1()"/>
+
+        </div>
+
+        <input type="submit" id="retry_fight1" onclick="fight1()" class="hidden"/>
+
+    </div>
     
     <script src="./index.js"></script>
 

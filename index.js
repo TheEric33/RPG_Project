@@ -357,7 +357,7 @@ function start_fight1(){
 
             pl.hp = 110;
 
-            screen_5c.innerHTML = "<p>" + enemy1.nom + " is KO the other men are approaching to the " + pl.club + " players, but the police have arrived and the  men are arrested. Finally the bus arrives and the team can return to " + cn.ciutats[0] +"<br><br>Congratulations your player upgraded her healt to: "+ pl.hp +"</p>";
+            screen_5c.innerHTML = "<p>" + enemy1.nom + " is KO the other men are approaching to the " + pl.club + " players, but the police have arrived and the  men are arrested. Finally the bus arrives and the team can return to " + cn.ciutats[0] +"<br><br>Congratulations your player upgraded her health to: "+ pl.hp +"</p>";
 
         }else{
 
@@ -418,3 +418,4 @@ function battle1_attack(){
 }
 
 pl.hp = 110;
+

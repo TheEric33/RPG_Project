@@ -1,3 +1,8 @@
+html{
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
 .hidden{
 
     display: none;
@@ -8,5 +13,41 @@
     display: inline-block;
     margin: 2%;
     text-align: center;
+
+}
+
+#view{
+
+    background-color: #000;
+    color: #fff;
+    width: 60%;
+    height: 40%;
+    margin-top: 15%;
+    margin-left: 20%;
+    text-align: center;
+    border: solid 1px;
+    padding: 3%;
+
+}
+
+.btn{
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #fff;
+    border-radius: 2%;
+    width: 100px;
+    height: 30px;
+
+}
+
+.rtn{
+
+    width: 150px;
+
+}
+
+#start_button{
+
+    margin-left: 42.15%;
 
 }

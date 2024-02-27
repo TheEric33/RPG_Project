@@ -8,97 +8,107 @@
 </head>
 <body>
 
-    <div id="initial">
+    <div id="imag">
 
-        <h1>Baller Adventures</h1>
-        <input type="submit" value="Start" onclick="triaJugadora()"/>
 
-    </div>
-    <div id="character" class="hidden">
-
-        <h1>Select Character</h1>
-        <p>Choose a character: </p>
-
-        <div class="player">
-
-            <p>Name: Ariadna Bonanit</p>
-            <p>Club: Barcla</p>
-            <input type="submit" value="choose" onclick="c_j1()"/>
-
-        </div>
-        <div class="player">
-
-            <p>Name: Kar Seem</p>
-            <p>Club: Chersy</p>
-            <input type="submit" value="choose" onclick="c_j2()"/>
-
-        </div>
-        <div class="player">
-
-            <p>Name: Dolphin Carascino</p>
-            <p>Club: Olympique Lions</p>
-            <input type="submit" value="choose" onclick="c_j3()"/>
-
-        </div>
-
-        <input type="submit" value="Start Game" onclick="start_game()" id="start_button" class="hidden">
 
     </div>
+    <div id="view">
 
-    <div id="starting" class="hidden"></div>
+        <div id="initial">
 
-    <div id="start_match1" class="hidden">
+            <h1>Baller Adventures</h1>
+            <input type="submit" value="Start" class="btn" onclick="triaJugadora()"/>
+
+        </div>
+        <div id="character" class="hidden">
+
+            <h1>Select Character</h1>
+            <p>Choose a character: </p>
+
+            <div class="player">
+
+                <p>Name: Ariadna Bonanit</p>
+                <p>Club: Barcla</p>
+                <input type="submit" value="choose" class="btn" onclick="c_j1()"/>
+
+            </div>
+            <div class="player">
+
+                <p>Name: Kar Seem</p>
+                <p>Club: Chersy</p>
+                <input type="submit" value="choose" class="btn" onclick="c_j2()"/>
+
+            </div>
+            <div class="player">
+
+                <p>Name: Dolphin Carascino</p>
+                <p>Club: Olympique Lions</p>
+                <input type="submit" value="choose" class="btn" onclick="c_j3()"/>
+
+            </div>
+
+            <input type="submit" value="Start Game"  onclick="start_game()" id="start_button" class="hidden btn">
+
+        </div>
+
+        <div id="starting" class="hidden"></div>
+
+        <div id="start_match1" class="hidden">
+            
+            <input type="submit" value="Start Match" class="btn" onclick="match1()"/>
         
-        <input type="submit" value="Start Match" onclick="match1()"/>
-    
+        </div>
+        
+        <div id="match1" class="hidden">
+
+            <div id="match1_comment"></div>
+            <div id="match1_shot" class="hidden">
+
+                <input type="submit" class="btn" value="Shoot" onclick="shot()">
+
+            </div>
+            <div id="return_match1" class="hidden">
+
+                <input type="submit" value="Return to the match" class="btn rtn" onclick="match1()">
+
+            </div>
+            <div id="end_match1" class="hidden">
+
+                <input type="submit" value="End Match" class="btn" onclick="fight1()">
+
+            </div>
+
+        </div>
+
+        <div id="right_street" class="hidden">
+
+            <div id="fight1_comment"></div>
+            <div id="start_fight1b">
+
+                <input type="submit" value="Start Battle" class="btn" onclick="start_fight1()">
+
+            </div>
+
+            <div id="battle1-decider" class="hidden">
+
+                <input type="number" id="text-decider"/>
+                <input type="submit"  value="Attack" class="btn" onclick="battle1_attack()"/>
+
+            </div>
+
+            <div id="return_battle1" class="hidden">
+
+                <input type="submit" value="return to battle" class="btn rtn" onclick="start_fight1()"/>
+
+            </div>
+
+            <input type="submit" value="Retry" id="retry_fight1" onclick="fight1()" class="hidden btn"/>
+
+        </div>  
+
     </div>
     
-    <div id="match1" class="hidden">
-
-        <div id="match1_comment"></div>
-        <div id="match1_shot" class="hidden">
-
-            <input type="submit" value="Shoot" onclick="shot()">
-
-        </div>
-        <div id="return_match1" class="hidden">
-
-            <input type="submit" value="Return to the match" onclick="match1()">
-
-        </div>
-        <div id="end_match1" class="hidden">
-
-            <input type="submit" value="End Match" onclick="fight1()">
-
-        </div>
-
-    </div>
-
-    <div id="right_street" class="hidden">
-
-        <div id="fight1_comment"></div>
-        <div id="start_fight1b">
-
-            <input type="submit" value="Start Battle" onclick="start_fight1()">
-
-        </div>
-
-        <div id="battle1-decider" class="hidden">
-
-            <input type="number" id="text-decider"/>
-            <input type="submit"  value="Attack" onclick="battle1_attack()"/>
-
-        </div>
-
-        <div id="return_battle1" class="hidden">
-
-            <input type="submit" value="return to battle" onclick="start_fight1()"/>
-
-        </div>
-
-        <input type="submit" id="retry_fight1" onclick="fight1()" class="hidden"/>
-
-    </div>
     
     <script src="./index.js"></script>
 

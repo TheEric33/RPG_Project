@@ -48,7 +48,7 @@
 
             </div>
 
-            <input type="submit" value="Start Game"  onclick="start_game()" id="start_button" class="hidden btn">
+            <input type="submit" value="Start Game"  onclick="start_game()" id="start_button" class="hidden btn center">
 
         </div>
 
@@ -105,7 +105,26 @@
 
             <input type="submit" value="Retry" id="retry_fight1" onclick="fight1()" class="hidden btn"/>
 
-        </div>  
+            <input type="submit" value="Move on" id="goToOption1" onclick="option1()" class="hidden btn center">
+
+        </div>
+        
+        <div id="option1" class="hidden">
+
+            <div id="option1_comment"></div>
+
+            <div>
+
+                <input type="radio" name="meeting" />
+                <label>Go to the meeting</label><br>
+                <input type="radio" name="meeting" />
+                <label>Don't go to the meeting</label><br><br>
+                <input type="submit" value="Contiune" onclick="choice1()"/>
+
+            </div>
+            
+
+        </div>
 
     </div>
     

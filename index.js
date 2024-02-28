@@ -92,6 +92,16 @@ class enemic{
 
 }
 
+class npc{
+
+    constructor(id,nom){
+
+        this.id = id;
+        this.nom = nom;
+
+    }
+
+}
 
 
 const j1 = new jugadora('j1','Ariadna','Bonanit','Barcla',100,60,40,'Spain');
@@ -120,6 +130,10 @@ var screen_5r = document.getElementById("return_battle1");
 var decider = document.getElementById("battle1-decider");
 var textdecider = document.getElementById("text-decider");
 var screen_5rt = document.getElementById("retry_fight1");
+var screen_5f = document.getElementById("goToOption1");
+var screen_6 = document.getElementById("option1");
+var screen_6c = document.getElementById("option1_comment");
+var meet = document.getElementsByName("meeting");
 
 var chances = 0;
 var plpoint = 0;
@@ -359,6 +373,8 @@ function start_fight1(){
 
             screen_5c.innerHTML = "<p>" + enemy1.nom + " is KO the other men are approaching to the " + pl.club + " players, but the police have arrived and the  men are arrested. Finally the bus arrives and the team can return to " + cn.ciutats[0] +"<br><br>Congratulations your player upgraded her health to: "+ pl.hp +"</p>";
 
+            screen_5f.style.display = "block";
+
         }else{
 
             screen_5c.innerHTML = "<p> GAME OVER. " + enemy1.nom + " have knocked " + pl.nom + "</p>";
@@ -418,4 +434,52 @@ function battle1_attack(){
 }
 
 pl.hp = 110;
+
+function option1(){
+
+    screen_5.style.display = "none";
+    screen_6.style.display = "block";
+
+    var n1 = new npc("n1","Carla");
+    var n2 = new npc("n2","Lucy");
+    var n3 = new npc("n3","Chloé");
+    var npc1 = new npc();
+
+    if (pl.pais == "Spain"){
+
+        npc1 = n1;
+
+    }else if (pl.pais == "England"){
+
+        npc1 = n2;
+
+    }else{
+
+        npc1 = n3;
+
+    }
+
+    screen_6c.innerHTML = "<p> " + pl.nom + " " + pl.cognom + " is going to a meeting with fans but...<br> A woman approach her and says: <br> " + npc1.nom + ": You don't have to go to the meeting, there will be an attack to you and your teammates!</p><br><br><p>In this kind of levels you can choose with some options and depending on the choice, the player will live different experiences. Do you want to go to the meeting?</p>";
+
+}
+
+function choice1(){
+
+    screen_6c.style.display = "none";
+
+    if (meet[0].checked){
+
+        console.log("Yes");
+
+    } else if (meet[1].checked){
+
+        console.log("No");
+
+    }else{
+
+        console.log("Error");
+
+    }
+
+}
 
